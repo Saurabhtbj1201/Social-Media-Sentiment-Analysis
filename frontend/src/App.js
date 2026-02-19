@@ -76,8 +76,8 @@ function App() {
   };
 
   const menuItems = [
-    { text: 'Twitter', path: '/Twitter' },
     { text: 'YouTube', path: '/YouTube' },
+    { text: 'Twitter', path: '/Twitter' },
     { text: 'Amazon', path: '/Amazon' },
   ];
 
@@ -93,7 +93,7 @@ function App() {
               <ListItemText
                 primary={item.text}
                 primaryTypographyProps={{
-                  color: location.pathname.includes(item.text) ? 'primary.main' : 'text.primary'
+                  color: location.pathname.includes(item.text) || (item.text === 'YouTube' && location.pathname === '/') ? 'primary.main' : 'text.primary'
                 }}
               />
             </ListItemButton>
@@ -128,8 +128,8 @@ function App() {
 
               {!isMobile && (
                 <Box>
-                  <Button component={Link} to="/Twitter" color="inherit" sx={{ mx: 1, color: location.pathname.includes('Twitter') || location.pathname === '/' ? 'primary.main' : 'text.secondary' }}>Twitter</Button>
-                  <Button component={Link} to="/YouTube" color="inherit" sx={{ mx: 1, color: location.pathname.includes('YouTube') ? 'primary.main' : 'text.secondary' }}>YouTube</Button>
+                  <Button component={Link} to="/YouTube" color="inherit" sx={{ mx: 1, color: location.pathname.includes('YouTube') || location.pathname === '/' ? 'primary.main' : 'text.secondary' }}>YouTube</Button>
+                  <Button component={Link} to="/Twitter" color="inherit" sx={{ mx: 1, color: location.pathname.includes('Twitter') ? 'primary.main' : 'text.secondary' }}>Twitter</Button>
                   <Button component={Link} to="/Amazon" color="inherit" sx={{ mx: 1, color: location.pathname.includes('Amazon') ? 'primary.main' : 'text.secondary' }}>Amazon</Button>
                 </Box>
               )}
@@ -156,7 +156,7 @@ function App() {
 
         <Container maxWidth="md" sx={{ mt: { xs: 4, md: 8 }, mb: 4, px: { xs: 2, md: 3 } }}>
           <Routes>
-            <Route path="/" Component={SentimentAnalyzer} />
+            <Route path="/" Component={YTSentimentAnalyzer} />
             <Route exact path="/Twitter" Component={SentimentAnalyzer} />
             <Route path="/YouTube" Component={YTSentimentAnalyzer} />
             <Route path="/Amazon" Component={AmazonSentimentAnalyzer} />
